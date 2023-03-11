@@ -16,7 +16,14 @@
 *   R1 - Scan pointer (read and written by XDECI)                *
 ******************************************************************
 *
-CUSTOMER DSECT
+* Responsibilities for Monish and Nevada:
+* 1. Build credit table                 - Nevada
+* 2. Build transaction table            - Monish
+* 3. Build/calculate APR change         - Nevada
+* 4. Build/calculate LOC recommendation - Monish
+* 5. Generate report                    - Pair
+*
+CREDIT   DSECT
 $ID      DS    F
 $NAME    DS    20C
 $INCOME  DS    F
@@ -25,6 +32,7 @@ $APR     DS    F
 $EQUIFAX DS    F
 $TRANSU  DS    F
 $EXPERIA DS    F
+* Total 12 fullwords per row
 *
 TRANSACT DSECT
 $ID      DS    F
@@ -32,6 +40,7 @@ $MONTH   DS    F
 $DAY     DS    F
 $TYPE    DS    12C            9C but align to fullword boundary
 $AMOUNT  DS    F
+* Total 7 fullwords per row
 *
 MAIN     CSECT
          USING MAIN,15
